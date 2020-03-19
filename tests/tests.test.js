@@ -107,20 +107,25 @@ test('find neighbours of a cell complex', () => {
 })
 
 test('decide what to do with cell in next generation', () => {
-  
-  
   const field = [0, 0, 0, 0,
-                 0, 1, 0, 0,
-                 1, 1, 0, 0,
-                 0, 0, 0, 0]
- console.log('index 8 has',game.findLiveNeighbours(field, 8))
+    0, 1, 0, 0,
+    1, 1, 0, 0,
+    0, 0, 0, 0]
+  // console.log('index 8 has', game.findLiveNeighbours(field, 8))
   const expected = [0, 0, 0, 0,
-                    1, 1, 0, 0,
-                    1, 1, 0, 0,
-                    0, 0, 0, 0]
+    1, 1, 0, 0,
+    1, 1, 0, 0,
+    0, 0, 0, 0]
   const actual = game.nextGeneration(field)
-  console.log('ac is', actual)
-  console.log('ex is', expected)
+  // console.log('ac is', actual)
+  // console.log('ex is', expected)
 
+  expect(actual).toEqual(expected)
+})
+
+test('check if my function finds correct neighbours', () => {
+  const expected = [4, 5, 7, 11, 9, 15, 12, 13]
+  const actual = game.tomNeighbours(8, 4)
+  console.log(actual)
   expect(actual).toEqual(expected)
 })
