@@ -1,5 +1,7 @@
 module.exports = {
-  makeField
+  makeField,
+  findLiveNeighbours,
+  findCoordinates
 }
 
 function makeField (size) {
@@ -8,4 +10,16 @@ function makeField (size) {
     field.push(0)
   }
   return field
+}
+
+function findLiveNeighbours (field, cell) {
+  const live = 0
+  let cellCoord = findCoordin
+  return live
+}
+
+function findCoordinates (size, cell) {
+  const col = cell % size
+  const row = (cell - col) / size
+  return [row, col]
 }
