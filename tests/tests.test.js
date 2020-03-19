@@ -5,7 +5,6 @@ test('make field produces an empty game board', () => {
   const ourGame = game.makeField(6)
   const actual = ourGame.length
   expect(actual).toBe(expected)
-  console.log(ourGame)
 })
 
 test('find coordinates of cell', () => {
@@ -78,8 +77,6 @@ test('check get neighbour indexes', () => {
   const row = cellCoords[0]
   const col = cellCoords[1]
 
-  console.log('row: ' + row)
-  console.log('col: ' + col)
   // Act
   const expected = [5, 6, 7, 9, 11, 13, 14, 15]
   const actual = game.getNeighboursIndex(Math.sqrt(field.length), row, col)
@@ -107,4 +104,23 @@ test('find neighbours of a cell complex', () => {
   const expected = 3
   const actual = game.findLiveNeighbours(field, cell)
   expect(actual).toBe(expected)
+})
+
+test('decide what to do with cell in next generation', () => {
+  
+  
+  const field = [0, 0, 0, 0,
+                 0, 1, 0, 0,
+                 1, 1, 0, 0,
+                 0, 0, 0, 0]
+ console.log('index 8 has',game.findLiveNeighbours(field, 8))
+  const expected = [0, 0, 0, 0,
+                    1, 1, 0, 0,
+                    1, 1, 0, 0,
+                    0, 0, 0, 0]
+  const actual = game.nextGeneration(field)
+  console.log('ac is', actual)
+  console.log('ex is', expected)
+
+  expect(actual).toEqual(expected)
 })

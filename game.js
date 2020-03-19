@@ -4,7 +4,8 @@ module.exports = {
   findCoordinates,
   addOne,
   subOne,
-  getNeighboursIndex
+  getNeighboursIndex,
+  nextGeneration
 }
 
 function makeField (size) {
@@ -27,7 +28,7 @@ function findLiveNeighbours (field, cell) {
   let row = cellCoords[0]
   let col = cellCoords[1]
   let neighboursIndex = getNeighboursIndex(size, row, col)
-  console.log(neighboursIndex)
+ 
 
   // check if cell equates to 1
   for (let i = 0; i < neighboursIndex.length; i++) {
@@ -79,4 +80,20 @@ function getNeighboursIndex (size, row, col) {
   indexes.push(addOne(row, size) * size + addOne(col, size))
 
   return indexes
+}
+
+function nextGeneration (field) {
+  let nextField = []
+  for (let i = 0; i < field.length; i++) {
+    let f = field[i]
+    if (f === 0 && findLiveNeighbours(field, i) === 3) {
+      f = 1
+    } else if (f === 1 && findLiveNeighbours(field, i) === (2 || 3)) {
+      f = 1
+    } else {
+      f = 0
+    }
+    nextField.push(f)
+  }
+  return nextField
 }
