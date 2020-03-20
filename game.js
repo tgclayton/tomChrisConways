@@ -98,25 +98,25 @@ function nextGeneration (field) {
   return nextField
 }
 
-function tomNeighbours (ind, size) { // index being looked up, square root of array length
+function tomNeighbours(ind, size) { // index being looked up, square root of array length
   let neighbours = []
-  let itRow = 0
-  let itCol = 0
+
   let col = (ind / size) % 1
-  let row = (Math.ceil(ind / size) * (1 / size))
+  let row = ((Math.round(ind / size) * (1 / size)) % 1)
   // console.log(ro
   for (let i = 0; i < 9; i++) {
-    itRow = Math.floor(i / 3) - 1
-    itCol = (i % 3) - 1
+    let itRow = Math.floor(i / 3) - 1
+    let itCol = (i % 3) - 1
+    let rowMod = (row + (itrow * (1/size)) % 1)
+    let colMod = (((itcol * (1/size)) + (1 + col)) % 1)
     if (i !== 4) {
-      let calc = Math.round((((row + (itRow * (1 / size))) % 1 ) * size)) + (((itCol * (1 / size)) + (1 + col)) % 1)
+      let calc = Math.round((rowMod * size)) + colMod
       neighbours.push(Math.round(calc * size))
     }
   }
   console.log(neighbours)
   return neighbours
 }
-
 tomNeighbours(12, 4)
 // (row + (itRow * (1 / size))) + (col + (itCol * (1 / size)))
 
